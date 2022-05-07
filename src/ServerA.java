@@ -7,12 +7,14 @@ import java.text.SimpleDateFormat;
 
 public class ServerA {
 
-    private static String ipHost;
+    private static String ip;
     private static final String ipBroker = "localhost";
+    private static String hostName = "serverA";
+    private static String brokerName = "MyBroker";
 
     public ServerA(String ipHost) throws RemoteException {
         super();
-        this.ipHost = ipHost;
+        ServerA.ipHost = ipHost;
     }
 
     public String dar_hora() {
@@ -30,18 +32,20 @@ public class ServerA {
     public static void main(String args[]) {
         System.setProperty("java.security.policy", "./src/java.policy");
         System.setSecurityManager(new SecurityManager());
-        String hostName = "serverA";
-        String brokerName = "";
+        
 
         Broker broker = (Broker) Naming.lookup("//" + brokerName + "");
         try {
             ServerA o = new ServerA(args[0]);
             System.out.println("Creado!");
 
-            //Registrar el servidor en el broker
-            broker.registrar_servidor(hostName,brokerName);
+            // Registrar el objeto ServerA remoto
+            Naming.rebind("//" + ip + "/"+ hostname, o);
 
+            // Registrar el servidor en el broker
+            broker.registrar_servidor(hostName,brokerName);
             System.out.println("Estoy registrado en el Broker!");
+
         } catch (Exception e) {
             System.out.println(e);
         }
