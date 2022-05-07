@@ -8,6 +8,8 @@ public interface Broker extends Remote {
 
     void registrar_servidor(String host_remoto_IP_port, String nombre_registrado) throws RemoteException;
 
-    //ArrayList<String> listar_servicios() throws RemoteException;
+    public void registrar_servicio(String nombre_regitrado, String nom_servicio,String tipo_retorno) throws RemoteException;
+
+    ArrayList<Servicio> listar_servicios() throws RemoteException;
 
 }
