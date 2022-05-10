@@ -88,4 +88,6 @@ public class ServerA extends UnicastRemoteObject implements Server {
         }
 		return output;
 	}
+
+    
 }
