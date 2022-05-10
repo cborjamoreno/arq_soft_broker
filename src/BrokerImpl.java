@@ -1,14 +1,15 @@
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class BrokerImpl implements Broker {
+public class BrokerImpl extends UnicastRemoteObject implements Broker {
     private ArrayList<Servidor> servidores;
     private static String ip;
     private static String hostName = "MyBroker";
 
     
-    public BrokerImpl(String ip) {
+    public BrokerImpl(String ip) throws RemoteException{
         BrokerImpl.ip = ip;
     }
 

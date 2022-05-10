@@ -14,7 +14,7 @@ public class ServerA implements Server {
 
     public ServerA(String ip) {
         super();
-        this.ip = ip;
+        ServerA.ip = ip;
     }
 
     public String dar_hora() {
