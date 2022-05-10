@@ -4,7 +4,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 public class BrokerImpl extends UnicastRemoteObject implements Broker {
-    private ArrayList<Servidor> servidores;
+    private ArrayList<Servidor> servidores = new ArrayList<Servidor>();
     private static String ip;
     private static String hostName = "MyBroker";
 

@@ -1,18 +1,20 @@
 import java.rmi.Naming;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class ServerA implements Server {
+public class ServerA extends UnicastRemoteObject implements Server {
 
     private static String ip;
     private static final String ipBroker = "localhost";
     private static final String brokerName = "MyBroker";
     private static String hostName = "serverA";
 
-    public ServerA(String ip) {
+    public ServerA(String ip) throws RemoteException {
         super();
         ServerA.ip = ip;
     }
