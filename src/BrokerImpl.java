@@ -20,9 +20,20 @@ public class BrokerImpl extends UnicastRemoteObject implements Broker {
         }
     }
 
+    public boolean servicioNoRegistrado(String nombre_servicio) {
+        for(Servidor server: servidores) {
+            for(Servicio s : server.listaServicios) {
+                if (s.getNombre().equals(nombre_servicio)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     public void registrar_servicio(String nombre_servidor, String nombre_servicio, String tipo_retorno) throws RemoteException {
         for (Servidor server : servidores) {
-            if (server.getNombre().equals(nombre_servidor)) {
+            if (server.getNombre().equals(nombre_servidor) && servicioNoRegistrado(nombre_servicio)) {
                 server.addServicio(new Servicio(nombre_servicio, tipo_retorno));
             }
         }
