@@ -32,7 +32,7 @@ public class ServerA extends UnicastRemoteObject implements Server {
     }
 
     public String ejecutar_metodo(String metodo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-        Method method = this.getClass().getMethod(metodo, new Class[]{String.class}); //El segundo argumento es lo que devuelve
+        Method method = this.getClass().getMethod(metodo, new Class[]{}); //El segundo argumento es los parametros
         return (String)method.invoke(this);
     }
 
@@ -49,7 +49,7 @@ public class ServerA extends UnicastRemoteObject implements Server {
             Naming.rebind("//" + ip + "/"+ hostName, o);
 
             // Registrar el servidor en el broker
-            broker.registrar_servidor(hostName,brokerName);
+            broker.registrar_servidor(hostName,ip);
             System.out.println("Estoy registrado en el Broker!");
             
             broker.registrar_servicio(hostName, "dar_hora", "string");
