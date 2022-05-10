@@ -9,8 +9,7 @@ public class BrokerImpl extends UnicastRemoteObject implements Broker {
     private static String hostName = "MyBroker";
 
     
-    public BrokerImpl() throws RemoteException{
-    }
+    public BrokerImpl() throws RemoteException{}
 
     public void registrar_servidor(String nombre_servidor, String host_remoto_IP_puerto) throws RemoteException {
         Servidor s = new Servidor(nombre_servidor,host_remoto_IP_puerto);
@@ -34,7 +33,7 @@ public class BrokerImpl extends UnicastRemoteObject implements Broker {
             for(Servidor server: servidores) {
                 for(Servicio s : server.listaServicios) {
                     if (s.getNombre().equals(nombre_servicio)) {
-                        Server ser = (Server) Naming.lookup("//" + server.getIpPort() + "/" + server.getNombre());
+                        ServerA ser = (ServerA) Naming.lookup("//" + server.getIpPort() + "/" + server.getNombre());
                         return ser.ejecutar_metodo(nombre_servicio);
                     }
                 }
