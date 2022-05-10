@@ -40,7 +40,7 @@ public class ServerA implements Server {
     }
 
     public static void main(String args[]) {
-        System.setProperty("java.security.policy", "./src/java.policy");
+        System.setProperty("java.security.policy", "./java.policy");
         System.setSecurityManager(new SecurityManager());
         
         try {

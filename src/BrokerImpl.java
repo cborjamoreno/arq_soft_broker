@@ -57,7 +57,7 @@ public class BrokerImpl implements Broker {
     public static void main(String args[])
     {
         //Fijar el directorio donde se encuentra el java.policy
-        System.setProperty("java.security.policy", "./src/java.policy");
+        System.setProperty("java.security.policy", "./java.policy");
 
         //Crear administrador de seguridad
         System.setSecurityManager(new SecurityManager());

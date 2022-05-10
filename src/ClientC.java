@@ -7,7 +7,7 @@ public class ClientC {
     private static final String brokerName = "MyBroker";
 
     public static void main(String[] args) throws RemoteException{
-        System.setProperty("java.security.policy", "./src/java.policy");
+        System.setProperty("java.security.policy", "./java.policy");
         if (System.getSecurityManager() == null) {
             //Crear administrador de seguridad
             System.setSecurityManager(new SecurityManager());
