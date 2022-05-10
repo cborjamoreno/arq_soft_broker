@@ -14,6 +14,14 @@ public class BrokerImpl extends UnicastRemoteObject implements Broker {
     public void registrar_servidor(String nombre_servidor, String host_remoto_IP_puerto) throws RemoteException {
         Servidor s = new Servidor(nombre_servidor,host_remoto_IP_puerto);
         try {
+            int i=0;
+            boolean encontrado = false;
+            while (i < servidores.size() && !encontrado){
+                if(servidores.get(i).getNombre().equals(nombre_servidor)) {
+                    encontrado = true;
+                    servidores.remove(i);
+                }
+            }
             servidores.add(s);
         } catch (Exception e) {
             System.err.println(e);
