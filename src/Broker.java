@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public interface Broker extends Remote {
 
-    String ejecutar_servicio(String nom_servicio) throws RemoteException;
+    String ejecutar_servicio(String metodo, Object[] parametros) throws RemoteException;
 
     void registrar_servidor(String host_remoto_IP_port, String nombre_registrado) throws RemoteException;
 

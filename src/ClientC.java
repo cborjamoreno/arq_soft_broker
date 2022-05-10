@@ -44,8 +44,12 @@ public class ClientC {
                     System.out.println("¿Que metodo quieres que ejecute?");
                     sc.nextLine();
                     String metodo = sc.nextLine();
-                    System.out.println("Ejecutando metodo "+metodo+"...");
-                    System.out.println(broker.ejecutar_servicio(metodo));
+                    System.out.println("¿Argumentos? (separados por comas)");
+                    sc.nextLine();
+                    String arguments = sc.nextLine();
+
+                    System.out.println("Ejecutando metodo "+metodo+" con argumentos "+arguments+"...");
+                    System.out.println(broker.ejecutar_servicio(metodo, arguments.split(",")));
 
                     System.out.println();
                     break;
