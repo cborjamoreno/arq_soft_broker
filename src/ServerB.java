@@ -1,34 +1,27 @@
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class ServerA extends UnicastRemoteObject implements Server {
+public class ServerB extends UnicastRemoteObject implements Server {
 
     private static String ip;
     private static final String ipBroker = "155.210.154.209";
     private static final String brokerName = "Broker3675";
-    private static String hostName = "ServerA3675";
+    private static String hostName = "ServerB3675";
 
-    public ServerA(String ip) throws RemoteException {
+    public ServerB(String ip) throws RemoteException {
         super();
-        ServerA.ip = ip;
+        ServerB.ip = ip;
     }
 
-    public String dar_hora() {
-        DateFormat dateF = new SimpleDateFormat("HH:mm:ss");
-		Date date = new Date();
-		return dateF.format(date);
+    public String dar_nombre() {
+		return "Doraemon";
     }
 
-    public String dar_fecha() {
-        DateFormat dateF = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date();
-		return dateF.format(date);
+    public String dar_alias() {
+		return "el gato cósmico";
     }
 
     public String ejecutar_metodo(String metodo) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
@@ -42,7 +35,7 @@ public class ServerA extends UnicastRemoteObject implements Server {
         
         try {
             Broker broker = (Broker) Naming.lookup("//" + ipBroker + "/" + brokerName);
-            ServerA o = new ServerA(args[0]);
+            ServerB o = new ServerB(args[0]);
             System.out.println("Creado!");
 
             // Registrar el objeto ServerA remoto

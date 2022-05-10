@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class BrokerImpl extends UnicastRemoteObject implements Broker {
     private ArrayList<Servidor> servidores = new ArrayList<Servidor>();
     private static String ip = "155.210.154.209";
-    private static String hostName = "MyBroker";
+    private static String hostName = "Broker3675";
 
     
     public BrokerImpl() throws RemoteException{}

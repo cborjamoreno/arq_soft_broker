@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class ClientC {
     private static final String ipBroker = "155.210.154.209";
-    private static final String brokerName = "MyBroker";
+    private static final String brokerName = "Broker3675";
 
     public static void main(String[] args) throws RemoteException{
         System.setProperty("java.security.policy", "./java.policy");

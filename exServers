@@ -1,1 +1,2 @@
-java -cp bin/ ServerA "$@"
+java -cp bin/ ServerA "$1"
+java -cp bin/ ServerB "$1"
