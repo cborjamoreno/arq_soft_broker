@@ -3,7 +3,7 @@ import java.rmi.RemoteException;
 import java.util.Scanner;
 
 public class ClientC {
-    private static final String ipBroker = "localhost";
+    private static final String ipBroker = "155.210.154.209";
     private static final String brokerName = "MyBroker";
 
     public static void main(String[] args) throws RemoteException{

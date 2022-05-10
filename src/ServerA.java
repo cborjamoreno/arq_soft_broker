@@ -10,7 +10,7 @@ import java.lang.reflect.Method;
 public class ServerA extends UnicastRemoteObject implements Server {
 
     private static String ip;
-    private static final String ipBroker = "localhost";
+    private static final String ipBroker = "155.210.154.209";
     private static final String brokerName = "MyBroker";
     private static String hostName = "serverA";
 

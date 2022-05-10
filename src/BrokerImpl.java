@@ -5,12 +5,11 @@ import java.util.ArrayList;
 
 public class BrokerImpl extends UnicastRemoteObject implements Broker {
     private ArrayList<Servidor> servidores = new ArrayList<Servidor>();
-    private static String ip;
+    private static String ip = "155.210.154.209";
     private static String hostName = "MyBroker";
 
     
-    public BrokerImpl(String ip) throws RemoteException{
-        BrokerImpl.ip = ip;
+    public BrokerImpl() throws RemoteException{
     }
 
     public void registrar_servidor(String nombre_servidor, String host_remoto_IP_puerto) throws RemoteException {
@@ -64,7 +63,7 @@ public class BrokerImpl extends UnicastRemoteObject implements Broker {
         
         try
         {
-            BrokerImpl broker = new BrokerImpl(args[0]);
+            BrokerImpl broker = new BrokerImpl();
             System.out.println("Broker creado!");
 
             //Registrar el broker
