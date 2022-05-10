@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Servicio {
+public class Servicio implements Serializable {
 
     private String tipo;
     private String nombre;
