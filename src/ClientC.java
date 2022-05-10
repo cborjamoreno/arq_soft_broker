@@ -1,12 +1,12 @@
-import java.util.ArrayList;
 import java.rmi.Naming;
+import java.rmi.RemoteException;
 import java.util.Scanner;
 
 public class ClientC {
     private static final String ipBroker = "localhost";
     private static final String brokerName = "MyBroker";
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws RemoteException{
         System.setProperty("java.security.policy", "./src/java.policy");
         if (System.getSecurityManager() == null) {
             //Crear administrador de seguridad
@@ -29,6 +29,7 @@ public class ClientC {
             System.out.println("¿Que quieres que haga?");
             System.out.println("    1: Mostrar metodos");
             System.out.println("    2: Ejecutar un metodo");
+            System.out.println("    3: Salir");
             switch (sc.nextInt()) {
                 case 1: //Mostrar metodos
                     System.out.println("Estos son los metodos:");
@@ -47,6 +48,11 @@ public class ClientC {
 
                     System.out.println();
                     break;
+                
+                case 3: //Salir
+                    System.out.println("Adios :)");
+                    sc.close();
+                    return;
 
                 default:
                     System.out.println("No te he entendido");
