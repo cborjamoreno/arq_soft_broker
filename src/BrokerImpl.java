@@ -33,7 +33,7 @@ public class BrokerImpl extends UnicastRemoteObject implements Broker {
             for(Servidor server: servidores) {
                 for(Servicio s : server.listaServicios) {
                     if (s.getNombre().equals(nombre_servicio)) {
-                        ServerA ser = (ServerA) Naming.lookup("//" + server.getIpPort() + "/" + server.getNombre());
+                        Server ser = (Server) Naming.lookup("//" + server.getIpPort() + "/" + server.getNombre());
                         return ser.ejecutar_metodo(nombre_servicio);
                     }
                 }
