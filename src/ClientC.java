@@ -44,7 +44,7 @@ public class ClientC {
                     System.out.println("¿Que metodo quieres que ejecute?");
                     sc.nextLine();
                     String metodo = sc.nextLine();
-                    System.out.println("Ejecutando metodo...");
+                    System.out.println("Ejecutando metodo "+metodo+"...");
                     System.out.println(broker.ejecutar_servicio(metodo));
 
                     System.out.println();
