@@ -12,6 +12,7 @@ public class ClientC {
             //Crear administrador de seguridad
             System.setSecurityManager(new SecurityManager());
         }
+        System.setProperty("java.rmi.server.hostname","155.210.154.209");
         Broker broker = null;
         try
         {
@@ -44,8 +45,17 @@ public class ClientC {
                     System.out.println("¿Que metodo quieres que ejecute?");
                     sc.nextLine();
                     String metodo = sc.nextLine();
-                    System.out.println("Ejecutando metodo "+metodo+"...");
-                    System.out.println(broker.ejecutar_servicio(metodo));
+                    System.out.println("¿Argumentos? (separados por comas)");
+                    String arguments = sc.nextLine();
+
+                    System.out.println("Ejecutando metodo "+metodo+" con argumentos ["+arguments+"]...");
+                    if(arguments.compareTo("") == 0) {
+                        System.out.println(broker.ejecutar_servicio(metodo, new String[]{}));
+                    }
+                    else {
+                        System.out.println(broker.ejecutar_servicio(metodo, arguments.split(",")));
+                    }
+
 
                     System.out.println();
                     break;

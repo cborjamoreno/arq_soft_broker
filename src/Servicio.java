@@ -1,14 +1,16 @@
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class Servicio implements Serializable {
 
     private String tipo;
     private String nombre;
-    //private String[] lista_param; //Array con los parámetros del servicio
+    private String[] lista_param; //Array con los parámetros del servicio
 
-    public Servicio(String nombre, String retorno) {
+    public Servicio(String nombre, String retorno, String... lista) {
         this.tipo = retorno;
         this.nombre = nombre;
+        this.lista_param = lista;
     }
     
 	//Getters
@@ -20,9 +22,9 @@ public class Servicio implements Serializable {
         return tipo;
     }
 
-    // public String[] getListaParam() {
-    //     return lista_param;
-    // }
+    public String[] getListaParam() {
+        return lista_param;
+    }
     
     /*
      * Reescritura del método toString de la clase Object de Java.
@@ -30,6 +32,6 @@ public class Servicio implements Serializable {
 	@Override
     public String toString() {
         //String parametros = Arrays.toString(lista_param);
-        return tipo + " " + nombre + "()"; //+ "(" + parametros + ")";
+        return tipo + " " + nombre + "("+Arrays.toString(lista_param)+")"; //+ "(" + parametros + ")";
     }
 }
