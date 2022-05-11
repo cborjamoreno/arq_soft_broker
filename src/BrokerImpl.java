@@ -48,6 +48,16 @@ public class BrokerImpl extends UnicastRemoteObject implements Broker {
         }
     }
 
+    public void baja_servicio(String nombre_servicio) throws RemoteException {
+        for (Servidor server : servidores) {
+            for(Servicio s : server.listaServicios) {
+                if (s.getNombre().equals(nombre_servicio)) {
+                    server.listaServicios.remove(s);
+                }
+            }
+        }
+    }
+
     public String ejecutar_servicio(String nombre_servicio, Object[] parametros) throws RemoteException{
         try {
             for(Servidor server: servidores) {
