@@ -16,11 +16,12 @@ public class BrokerImpl extends UnicastRemoteObject implements Broker {
         try {
             int i=0;
             boolean encontrado = false;
-            while (i < servidores.size() && !encontrado){
+            while (!encontrado && i < servidores.size()){
                 if(servidores.get(i).getNombre().equals(nombre_servidor)) {
                     encontrado = true;
                     servidores.remove(i);
                 }
+                i++;
             }
             servidores.add(s);
         } catch (Exception e) {
