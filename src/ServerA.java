@@ -11,8 +11,8 @@ public class ServerA extends UnicastRemoteObject implements Server {
 
     private static String ip;
     private static final String ipBroker = "155.210.154.209";
-    private static final String brokerName = "MyBroker";
-    private static String hostName = "serverA";
+    private static final String brokerName = "Broker3675";
+    private static String hostName = "ServerA3675";
 
     public ServerA(String ip) throws RemoteException {
         super();

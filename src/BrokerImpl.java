@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class BrokerImpl extends UnicastRemoteObject implements Broker {
     private ArrayList<Servidor> servidores = new ArrayList<Servidor>();
     private static String ip = "155.210.154.209";
-    private static String hostName = "MyBroker";
+    private static String hostName = "Broker3675";
 
     
     public BrokerImpl() throws RemoteException{}
@@ -14,10 +14,30 @@ public class BrokerImpl extends UnicastRemoteObject implements Broker {
     public void registrar_servidor(String nombre_servidor, String host_remoto_IP_puerto) throws RemoteException {
         Servidor s = new Servidor(nombre_servidor,host_remoto_IP_puerto);
         try {
+            int i=0;
+            boolean encontrado = false;
+            while (!encontrado && i < servidores.size()){
+                if(servidores.get(i).getNombre().equals(nombre_servidor)) {
+                    encontrado = true;
+                    servidores.remove(i);
+                }
+                i++;
+            }
             servidores.add(s);
         } catch (Exception e) {
             System.err.println(e);
         }
+    }
+
+    public boolean servicioNoRegistrado(String nombre_servicio) {
+        for(Servidor server: servidores) {
+            for(Servicio s : server.listaServicios) {
+                if (s.getNombre().equals(nombre_servicio)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public void registrar_servicio(String nombre_regitrado, String nom_servicio, String tipo_retorno, String[] tipoParametros) throws RemoteException {
