@@ -11,6 +11,7 @@ public class BrokerImpl extends UnicastRemoteObject implements Broker {
     
     public BrokerImpl() throws RemoteException{}
 
+    
     public void registrar_servidor(String nombre_servidor, String host_remoto_IP_puerto) throws RemoteException {
         Servidor s = new Servidor(nombre_servidor,host_remoto_IP_puerto);
         try {
@@ -29,6 +30,12 @@ public class BrokerImpl extends UnicastRemoteObject implements Broker {
         }
     }
 
+    /**
+    * Metodo auxiliar que devuelve si el servicio esta registrado
+    *
+    * @param nombre_servicio    Nombre del servicio
+    * @return                   boolean
+    */
     public boolean servicioNoRegistrado(String nombre_servicio) {
         for(Servidor server: servidores) {
             for(Servicio s : server.listaServicios) {
@@ -40,6 +47,7 @@ public class BrokerImpl extends UnicastRemoteObject implements Broker {
         return true;
     }
 
+    
     public void registrar_servicio(String nombre_regitrado, String nom_servicio, String tipo_retorno, String[] tipoParametros) throws RemoteException {
         for (Servidor server : servidores) {
             if (server.getNombre().equals(nombre_regitrado)) {
@@ -48,6 +56,7 @@ public class BrokerImpl extends UnicastRemoteObject implements Broker {
         }
     }
 
+    
     public void baja_servicio(String nombre_servicio) throws RemoteException {
         for (Servidor server : servidores) {
             for(Servicio s : server.listaServicios) {
@@ -58,6 +67,7 @@ public class BrokerImpl extends UnicastRemoteObject implements Broker {
         }
     }
 
+    
     public String ejecutar_servicio(String nombre_servicio, Object[] parametros) throws RemoteException{
         try {
             for(Servidor server: servidores) {
@@ -74,6 +84,7 @@ public class BrokerImpl extends UnicastRemoteObject implements Broker {
         return "";
     }
 
+    
     public ArrayList<Servicio> listar_servicios() {
         ArrayList<Servicio> lista = new ArrayList<Servicio>();
         for(Servidor server : servidores) {

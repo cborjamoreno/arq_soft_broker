@@ -70,6 +70,12 @@ public class ServerA extends UnicastRemoteObject implements Server {
         }
     }
 
+    /**
+    * Funcion auxiliar que convierte un array de strings representando clases en array de clases
+    *
+    * @param param    Tipos de parametros en formato string
+    * @return         Array de clases representadas por la entrada
+    */
     private Class[] toClassArray(String[] param){
 		Class[] output = new Class[param.length];
         int i = 0;
