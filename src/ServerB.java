@@ -21,9 +21,9 @@ public class ServerB extends UnicastRemoteObject implements Server {
 		return "Doraemon";
     }
 
-    // public String dar_alias() {
-	// 	return "el gato cósmico";
-    // }
+    public String dar_alias() {
+		return "el gato cósmico";
+    }
 
     public String ejecutar_metodo(String metodo, String[] tipoParametros, String retorno, Object[] parametros) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
         Method method = this.getClass().getMethod(metodo, toClassArray(tipoParametros)); //El segundo argumento es los parametros
@@ -47,7 +47,7 @@ public class ServerB extends UnicastRemoteObject implements Server {
             System.out.println("Estoy registrado en el Broker!");
             
             broker.registrar_servicio(hostName, "dar_nombre", "string", new String[]{});
-            //broker.registrar_servicio(hostName, "dar_alias", "string", new String[]{});
+            broker.registrar_servicio(hostName, "dar_alias", "string", new String[]{});
             System.out.println("Servicios registrados");
         } catch (Exception e) {
             System.err.println(e);
