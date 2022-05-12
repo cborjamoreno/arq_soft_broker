@@ -47,7 +47,7 @@ public class ServerB extends UnicastRemoteObject implements Server {
             System.out.println("Estoy registrado en el Broker!");
             
             broker.registrar_servicio(hostName, "dar_nombre", "string", new String[]{});
-            broker.registrar_servicio(hostName, "dar_alias", "string", new String[]{});
+            //broker.registrar_servicio(hostName, "dar_alias", "string", new String[]{});
             System.out.println("Servicios registrados");
         } catch (Exception e) {
             System.err.println(e);
