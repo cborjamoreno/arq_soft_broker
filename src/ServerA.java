@@ -65,6 +65,8 @@ public class ServerA extends UnicastRemoteObject implements Server {
             broker.registrar_servicio(hostName, "eco", "string", new String[]{"String"});
             broker.registrar_servicio(hostName, "suma", "string", new String[]{"String","String"});
             System.out.println("Servicios registrados");
+            broker.baja_servicio("suma");
+            System.out.println("He dado de baja suma");
         } catch (Exception e) {
             System.err.println(e);
         }
