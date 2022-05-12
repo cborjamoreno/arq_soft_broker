@@ -11,12 +11,13 @@ public class ServerA extends UnicastRemoteObject implements Server {
 
     private static String ip;
     private static final String ipBroker = "155.210.154.209";
-    private static final String brokerName = "Broker3675";
+    private static String brokerName;
     private static String hostName = "ServerA3675";
 
-    public ServerA(String ip) throws RemoteException {
+    public ServerA(String ip, String brokerName) throws RemoteException {
         super();
         ServerA.ip = ip;
+        ServerA.brokerName = brokerName;
     }
 
     public String dar_hora() {
@@ -42,37 +43,6 @@ public class ServerA extends UnicastRemoteObject implements Server {
     public String ejecutar_metodo(String metodo, String[] tipoParametros, String retorno, Object[] parametros) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
         Method method = this.getClass().getMethod(metodo, toClassArray(tipoParametros)); //El segundo argumento es los parametros
         return (String)method.invoke(this,parametros);
-    }
-
-    public static void main(String args[]) {
-        System.setProperty("java.security.policy", "./java.policy");
-        System.setSecurityManager(new SecurityManager());
-        
-        try {
-            Broker broker = (Broker) Naming.lookup("//" + ipBroker + "/" + brokerName);
-            ServerA o = new ServerA(args[0]);
-            System.out.println("Creado!");
-
-            // Registrar el objeto ServerA remoto
-            Naming.rebind("//" + ip + "/"+ hostName, o);
-
-            // Registrar el servidor en el broker
-            broker.registrar_servidor(hostName,ip);
-            System.out.println("Estoy registrado en el Broker!");
-            
-            //Doy de alta los servicios
-            broker.registrar_servicio(hostName, "dar_hora", "string", new String[]{});
-            broker.registrar_servicio(hostName, "dar_fecha", "string", new String[]{});
-            broker.registrar_servicio(hostName, "eco", "string", new String[]{"String"});
-            broker.registrar_servicio(hostName, "suma", "string", new String[]{"String","String"});
-            System.out.println("Servicios registrados");
-
-            //Quito un servicio porque no me gusta
-            // broker.baja_servicio("suma");
-            // System.out.println("He dado de baja suma");
-        } catch (Exception e) {
-            System.err.println(e);
-        }
     }
 
     /**
@@ -110,5 +80,36 @@ public class ServerA extends UnicastRemoteObject implements Server {
 		return output;
 	}
 
+    public static void main(String args[]) {
+        System.setProperty("java.security.policy", "./java.policy");
+        System.setSecurityManager(new SecurityManager());
+        
+        try {
+            ServerA o = new ServerA(args[0],args[1]);
+            System.out.println("Creado!");
+
+            Broker broker = (Broker) Naming.lookup("//" + ipBroker + "/" + brokerName);
+
+            // Registrar el objeto ServerA remoto
+            Naming.rebind("//" + ip + "/"+ hostName, o);
+
+            // Registrar el servidor en el broker
+            broker.registrar_servidor(hostName,ip);
+            System.out.println("Estoy registrado en el Broker!");
+            
+            //Doy de alta los servicios
+            broker.registrar_servicio(hostName, "dar_hora", "string", new String[]{});
+            broker.registrar_servicio(hostName, "dar_fecha", "string", new String[]{});
+            broker.registrar_servicio(hostName, "eco", "string", new String[]{"String"});
+            broker.registrar_servicio(hostName, "suma", "string", new String[]{"String","String"});
+            System.out.println("Servicios registrados");
+
+            //Quito un servicio porque no me gusta
+            // broker.baja_servicio("suma");
+            // System.out.println("He dado de baja suma");
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
     
 }

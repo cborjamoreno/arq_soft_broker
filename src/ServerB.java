@@ -8,12 +8,13 @@ public class ServerB extends UnicastRemoteObject implements Server {
 
     private static String ip;
     private static final String ipBroker = "155.210.154.209";
-    private static final String brokerName = "Broker3675";
+    private static String brokerName;
     private static String hostName = "ServerB3675";
 
-    public ServerB(String ip) throws RemoteException {
+    public ServerB(String ip, String brokerName) throws RemoteException {
         super();
         ServerB.ip = ip;
+        ServerB.brokerName = brokerName;
     }
 
     public String dar_nombre() {
@@ -34,9 +35,9 @@ public class ServerB extends UnicastRemoteObject implements Server {
         System.setSecurityManager(new SecurityManager());
         
         try {
-            Broker broker = (Broker) Naming.lookup("//" + ipBroker + "/" + brokerName);
-            ServerB o = new ServerB(args[0]);
+            ServerB o = new ServerB(args[0], args[1]);
             System.out.println("Creado!");
+            Broker broker = (Broker) Naming.lookup("//" + ipBroker + "/" + brokerName);
 
             // Registrar el objeto ServerA remoto
             Naming.rebind("//" + ip + "/"+ hostName, o);
