@@ -28,12 +28,12 @@ public class ClientC {
         Scanner sc = new Scanner(System.in);  
         while(true) {
             System.out.println("¿Que quieres que haga?");
-            System.out.println("    1: Mostrar metodos");
-            System.out.println("    2: Ejecutar un metodo");
+            System.out.println("    1: Mostrar servicios");
+            System.out.println("    2: Ejecutar un servicio");
             System.out.println("    3: Salir");
             switch (sc.nextInt()) {
-                case 1: //Mostrar metodos
-                    System.out.println("Estos son los metodos:");
+                case 1: //Mostrar servicios
+                    System.out.println("Estos son los servicios:");
                     for(Servicio s : broker.listar_servicios()) {
                         System.out.println("    "+s.toString());
                     }
@@ -41,19 +41,19 @@ public class ClientC {
                     System.out.println();
                     break;
 
-                case 2: //Ejecutar un metodo
-                    System.out.println("¿Que metodo quieres que ejecute?");
+                case 2: //Ejecutar un servicio
+                    System.out.println("¿Que servicio quieres que ejecute?");
                     sc.nextLine();
-                    String metodo = sc.nextLine();
+                    String servicio = sc.nextLine();
                     System.out.println("¿Argumentos? (separados por comas)");
                     String arguments = sc.nextLine();
 
-                    System.out.println("Ejecutando metodo "+metodo+" con argumentos ["+arguments+"]...");
+                    System.out.println("Ejecutando servicio "+servicio+" con argumentos ["+arguments+"]...");
                     if(arguments.compareTo("") == 0) {
-                        System.out.println(broker.ejecutar_servicio(metodo, new String[]{}));
+                        System.out.println(broker.ejecutar_servicio(servicio, new String[]{}));
                     }
                     else {
-                        System.out.println(broker.ejecutar_servicio(metodo, arguments.split(",")));
+                        System.out.println(broker.ejecutar_servicio(servicio, arguments.split(",")));
                     }
 
 
