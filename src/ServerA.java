@@ -105,8 +105,8 @@ public class ServerA extends UnicastRemoteObject implements Server {
             System.out.println("Servicios registrados");
 
             //Quito un servicio porque no me gusta
-            //broker.baja_servicio("suma");
-            //System.out.println("He dado de baja suma");
+            broker.baja_servicio("suma");
+            System.out.println("He dado de baja suma");
         } catch (Exception e) {
             System.err.println(e);
         }
