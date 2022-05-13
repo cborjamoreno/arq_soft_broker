@@ -100,13 +100,13 @@ public class ServerA extends UnicastRemoteObject implements Server {
             //Doy de alta los servicios
             broker.registrar_servicio(hostName, "dar_hora", "string", new String[]{});
             broker.registrar_servicio(hostName, "dar_fecha", "string", new String[]{});
-            broker.registrar_servicio(hostName, "eco", "string", new String[]{"String"});
+            //broker.registrar_servicio(hostName, "eco", "string", new String[]{"String"});
             broker.registrar_servicio(hostName, "suma", "string", new String[]{"String","String"});
             System.out.println("Servicios registrados");
 
             //Quito un servicio porque no me gusta
-            broker.baja_servicio("suma");
-            System.out.println("He dado de baja suma");
+            //broker.baja_servicio("suma");
+            //System.out.println("He dado de baja suma");
         } catch (Exception e) {
             System.err.println(e);
         }
